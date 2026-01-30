@@ -2,10 +2,12 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
-import { Menu, X, ChevronDown } from 'lucide-react'
+import { Menu, X } from 'lucide-react'
+import { ContactFormDialog } from '@/components/contact-form-dialog'
 
 export default function Home() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const [contactOpen, setContactOpen] = useState(false)
 
   return (
     <div className="min-h-screen bg-background text-gray-900">
@@ -238,8 +240,9 @@ export default function Home() {
               Ready to bring reliable nuclear power to your nation? We'd love to explore partnership opportunities.
             </p>
             
-            <a
-              href="mailto:info@frontieratomics.com"
+            <button
+              type="button"
+              onClick={() => setContactOpen(true)}
               className="inline-flex items-center justify-center px-8 py-4 text-sm font-medium rounded-full transition-all duration-300 hover:opacity-80 active:scale-95"
               style={{
                 backgroundColor: '#2D4A3E',
@@ -247,7 +250,8 @@ export default function Home() {
               }}
             >
               Get In Touch
-            </a>
+            </button>
+            <ContactFormDialog open={contactOpen} onOpenChange={setContactOpen} />
           </div>
         </div>
       </section>
